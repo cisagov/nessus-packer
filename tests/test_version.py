@@ -1,5 +1,5 @@
 #!/usr/bin/env pytest -vs
-"""Version tests for packer skeleton project."""
+"""Version tests for nessus-packer project."""
 
 # Standard Python Libraries
 import os
