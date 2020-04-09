@@ -16,6 +16,8 @@
   become: yes
   become_method: sudo
   roles:
+    - amazon_efs_utils
+    - cloudwatch_agent
     # The instance types used for almost all the instances expose EBS
     # volumes as NVMe block devices, so that's why we need nvme here.
     - nvme
@@ -26,3 +28,4 @@
   become_method: sudo
   roles:
     - nessus
+    - more_ephemeral_ports
