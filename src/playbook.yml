@@ -20,9 +20,9 @@
     # volumes as NVMe block devices, so that's why we need nvme here.
     - nvme
 
-- hosts: example
-  name: Project-specific roles
+- hosts: all
+  name: Install Nessus
   become: yes
   become_method: sudo
   roles:
-    - example
+    - nessus
