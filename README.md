@@ -30,6 +30,7 @@ To create the build user, follow these instructions:
 ```console
 cd terraform-test-user
 terraform init --upgrade=true
+terraform apply -target=module.third_party_bucket_read_production -target=module.third_party_bucket_read_staging
 terraform apply
 ```
 
