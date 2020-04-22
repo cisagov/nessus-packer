@@ -100,8 +100,11 @@ source_profile = test-nessus-packer
 role_session_name = example
 ```
 
-The [Packer template](src/packer.json) requires two environment variables to be defined:
+The [Packer template](src/packer.json) requires three environment variables
+to be defined:
 
+* `BUILD_BUCKET`: The name of the S3 bucket containing the Nessus
+  package file.
 * `BUILD_REGION`: The region in which to build the image.
 * `BUILD_REGION_KMS`: The KMS key alias to use to encrypt the image.
 
@@ -117,6 +120,7 @@ Here is an example of how to kick off a pre-release build:
 ```console
 pip install --requirement requirements-dev.txt
 ansible-galaxy install --force --force-with-deps --role-file src/requirements.yml
+export BUILD_BUCKET="cisa-cool-third-party-staging"
 export BUILD_REGION="us-east-1"
 export BUILD_REGION_KMS="alias/cool-amis"
 export GITHUB_RELEASE_TAG=$(./bump_version.sh show)
