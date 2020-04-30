@@ -4,6 +4,19 @@
 # for this configuration.
 # ------------------------------------------------------------------------------
 
+data "terraform_remote_state" "ansible_role_nessus" {
+  backend = "s3"
+
+  config = {
+    encrypt        = true
+    bucket         = "cisa-cool-terraform-state"
+    dynamodb_table = "terraform-state-lock"
+    profile        = "cool-terraform-backend"
+    region         = "us-east-1"
+    key            = "ansible-role-nessus/terraform.tfstate"
+  }
+}
+
 data "terraform_remote_state" "images_parameterstore_production" {
   backend = "s3"
 
