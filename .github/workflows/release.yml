@@ -7,7 +7,10 @@ on:
 
 env:
   AWS_DEFAULT_REGION: us-east-1
+<<<<<<< HEAD
   BUILD_BUCKET: ${{ secrets.THIRD_PARTY_BUCKET_PRODUCTION }}
+=======
+>>>>>>> dd0d9d699133f962d38ccde13378139f94a95585
   BUILD_REGION: us-east-1
   BUILD_REGION_KMS: alias/cool-amis
   # Do not copy the AMI to other regions until we have figured out a
