@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Default AWS provider (EC2AMICreate role in the Images account)
 provider "aws" {
   region  = "us-east-1"
@@ -17,8 +16,6 @@ provider "aws" {
 data "aws_caller_identity" "images" {
 }
 
-=======
->>>>>>> dd0d9d699133f962d38ccde13378139f94a95585
 # ------------------------------------------------------------------------------
 # Retrieve the information for all accounts in the organization.  This is used to lookup
 # the Images account ID for use in the calculation of the related env account names.
@@ -45,21 +42,12 @@ locals {
   account_name_regex  = format("^env[[:digit:]]+ \\(%s\\)$", local.images_account_type)
 }
 
-<<<<<<< HEAD
 # The most-recent AMI created by cisagov/nessus-packer
 data "aws_ami" "nessus" {
   filter {
     name = "name"
     values = [
       "nessus-hvm-*-x86_64-ebs",
-=======
-# The most-recent AMI created by cisagov/skeleton-packer
-data "aws_ami" "example" {
-  filter {
-    name = "name"
-    values = [
-      "example-hvm-*-x86_64-ebs",
->>>>>>> dd0d9d699133f962d38ccde13378139f94a95585
     ]
   }
 
@@ -87,9 +75,5 @@ module "ami_launch_permission" {
   }
 
   account_name_regex = local.account_name_regex
-<<<<<<< HEAD
   ami_id             = data.aws_ami.nessus.id
-=======
-  ami_id             = data.aws_ami.example.id
->>>>>>> dd0d9d699133f962d38ccde13378139f94a95585
 }
