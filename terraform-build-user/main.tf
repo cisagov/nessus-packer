@@ -10,9 +10,26 @@ module "iam_user" {
   }
 
   ssm_parameters = ["/cyhy/dev/users", "/ssh/public_keys/*"]
-  user_name      = "build-skeleton-packer"
+  user_name      = "build-nessus-packer"
   tags = {
     Team        = "CISA - Development"
-    Application = "skeleton-packer"
+    Application = "nessus-packer"
   }
+}
+
+# Attach Production ThirdPartyBucketRead policy to
+# the Production EC2AMICreate role
+resource "aws_iam_role_policy_attachment" "thirdpartybucketread_production" {
+  provider = aws.images-production-ami
+
+  policy_arn = data.terraform_remote_state.ansible_role_nessus.outputs.production_policy.arn
+  role       = module.iam_user.ec2amicreate_role_production.name
+}
+
+# Attach Staging ThirdPartyBucketRead policy to the Staging EC2AMICreate role
+resource "aws_iam_role_policy_attachment" "thirdpartybucketread_staging" {
+  provider = aws.images-staging-ami
+
+  policy_arn = data.terraform_remote_state.ansible_role_nessus.outputs.staging_policy.arn
+  role       = module.iam_user.ec2amicreate_role_staging.name
 }
