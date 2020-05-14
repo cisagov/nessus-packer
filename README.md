@@ -2,19 +2,9 @@
 
 [![GitHub Build Status](https://github.com/cisagov/nessus-packer/workflows/build/badge.svg)](https://github.com/cisagov/nessus-packer/actions)
 
-<<<<<<< HEAD
 This project can be used to create machine images that include
 [Tenable's Nessus Professional](https://www.tenable.com/products/nessus/nessus-professional)
 vulnerability scanner.
-=======
-This is a generic skeleton project that can be used to quickly get a
-new [cisagov](https://github.com/cisagov) GitHub
-[Packer](https://packer.io) project started. This skeleton project
-contains [licensing information](LICENSE), as well as
-[pre-commit hooks](https://pre-commit.com) and
-[GitHub Actions](https://github.com/features/actions) configurations
-appropriate for the major languages that we use.
->>>>>>> dd0d9d699133f962d38ccde13378139f94a95585
 
 ## Pre-requisites ##
 
@@ -52,11 +42,7 @@ remote profile data in order to use
 To create the build user, follow these instructions:
 
 ```console
-<<<<<<< HEAD
 cd terraform-test-user
-=======
-cd terraform-build-user
->>>>>>> dd0d9d699133f962d38ccde13378139f94a95585
 terraform init --upgrade=true
 terraform apply
 ```
@@ -97,11 +83,7 @@ how the build was triggered from GitHub.
 1. **Pre-release deploy**: Publish a GitHub release
    with the "This is a pre-release" checkbox checked. An image will be built
    and deployed using the [`prerelease`](.github/workflows/prerelease.yml)
-<<<<<<< HEAD
    workflow.  This should be configured to deploy the image to a single region
-=======
-   workflow. This should be configured to deploy the image to a single region
->>>>>>> dd0d9d699133f962d38ccde13378139f94a95585
    using a non-production account (e.g. "staging").
 1. **Production release deploy**: Publish a GitHub release with
    the "This is a pre-release" checkbox unchecked. An image will be built
@@ -115,18 +97,13 @@ Packer will use your
 [standard AWS environment](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
 to build the image, however you will need to set up one profile for the
 previously-created build user and another profile to assume the associated
-<<<<<<< HEAD
 `EC2AMICreate` role.  You will need the `aws_access_key_id` and
-=======
-`EC2AMICreate` role. You will need the `aws_access_key_id` and
->>>>>>> dd0d9d699133f962d38ccde13378139f94a95585
 `aws_secret_access_key` that you set as GitHub secrets earlier.
 
 Add the following blocks to your AWS credentials file (be sure to replace the
 dummy account ID in the `role_arn` with your own):
 
 ```console
-<<<<<<< HEAD
 [test-nessus-packer]
 aws_access_key_id = AKIAXXXXXXXXXXXXXXXX
 aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -134,26 +111,14 @@ aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 [cool-images-ec2amicreate-nessus-packer]
 role_arn = arn:aws:iam::111111111111:role/EC2AMICreate-test-nessus-packer
 source_profile = test-nessus-packer
-=======
-[build-skeleton-packer]
-aws_access_key_id = AKIAXXXXXXXXXXXXXXXX
-aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-[cool-images-ec2amicreate-skeleton-packer]
-role_arn = arn:aws:iam::111111111111:role/EC2AMICreate-build-skeleton-packer
-source_profile = build-skeleton-packer
->>>>>>> dd0d9d699133f962d38ccde13378139f94a95585
 role_session_name = example
 ```
 
 The [Packer template](src/packer.json) requires three environment variables
 to be defined:
 
-<<<<<<< HEAD
 * `BUILD_BUCKET`: The name of the S3 bucket containing the Nessus
   package file.
-=======
->>>>>>> dd0d9d699133f962d38ccde13378139f94a95585
 * `BUILD_REGION`: The region in which to build the image.
 * `BUILD_REGION_KMS`: The KMS key alias to use to encrypt the image.
 
@@ -169,18 +134,11 @@ Here is an example of how to kick off a pre-release build:
 ```console
 pip install --requirement requirements-dev.txt
 ansible-galaxy install --force --force-with-deps --role-file src/requirements.yml
-<<<<<<< HEAD
 export BUILD_BUCKET="cisa-cool-third-party-staging"
 export BUILD_REGION="us-east-1"
 export BUILD_REGION_KMS="alias/cool-amis"
 export GITHUB_RELEASE_TAG=$(./bump_version.sh show)
 AWS_PROFILE=cool-images-ec2amicreate-nessus-packer packer build --timestamp-ui src/packer.json
-=======
-export BUILD_REGION="us-east-1"
-export BUILD_REGION_KMS="alias/cool-amis"
-export GITHUB_RELEASE_TAG=$(./bump_version.sh show)
-AWS_PROFILE=cool-images-ec2amicreate-skeleton-packer packer build --timestamp-ui src/packer.json
->>>>>>> dd0d9d699133f962d38ccde13378139f94a95585
 ```
 
 If you are satisfied with your pre-release image, you can easily create a release
@@ -192,11 +150,7 @@ and rerunning packer:
 ```console
 echo "us-east-2:alias/cool-amis,us-west-1:alias/cool-amis,\
 us-west-2:alias/cool-amis" | ./patch_packer_config.py src/packer.json
-<<<<<<< HEAD
 AWS_PROFILE=cool-images-ec2amicreate-nessus-packer packer build --timestamp-ui src/packer.json
-=======
-AWS_PROFILE=cool-images-ec2amicreate-skeleton-packer packer build --timestamp-ui src/packer.json
->>>>>>> dd0d9d699133f962d38ccde13378139f94a95585
 ```
 
 See the patcher script's help for more information about its options and
@@ -209,15 +163,9 @@ inner workings:
 ### Giving Other AWS Accounts Permission to Launch the Image ###
 
 After the AMI has been successfully created, you may want to allow other
-<<<<<<< HEAD
 accounts in your AWS organization permission to launch it.  For this project,
 we want to allow all accounts whose names begin with "env" to launch the
 most-recently-created AMI.  To do that, follow these instructions, noting that
-=======
-accounts in your AWS organization permission to launch it. For this project,
-we want to allow all accounts whose names begin with "env" to launch the
-most-recently-created AMI. To do that, follow these instructions, noting that
->>>>>>> dd0d9d699133f962d38ccde13378139f94a95585
 "ENVIRONMENT_TYPE" below should be replaced with where the AMI was created
 (e.g "production", "staging", etc.):
 

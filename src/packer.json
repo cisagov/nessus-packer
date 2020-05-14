@@ -66,13 +66,10 @@
       "ansible_env_vars": [
         "AWS_DEFAULT_REGION={{user `build_region`}}"
       ],
-<<<<<<< HEAD
       "extra_arguments": [
         "--extra-vars",
         "build_bucket={{user `build_bucket`}}"
       ],
-=======
->>>>>>> dd0d9d699133f962d38ccde13378139f94a95585
       "groups": [
         "aws"
       ],

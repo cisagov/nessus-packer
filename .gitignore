@@ -1,13 +1,10 @@
-*.egg-info
+__pycache__
 .coverage
 .mypy_cache
 .pytest_cache
 .python-version
 .terraform
-__pycache__
+*.egg-info
 dist
 packer_cache
-<<<<<<< HEAD
 terraform*/.terraform
-=======
->>>>>>> dd0d9d699133f962d38ccde13378139f94a95585
