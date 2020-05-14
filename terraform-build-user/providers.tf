@@ -71,3 +71,25 @@ provider "aws" {
     session_name = local.caller_user_name
   }
 }
+
+# ProvisionThirdPartyBucketReadRoles AWS provider
+# for the Images Production account
+provider "aws" {
+  alias  = "images-production-s3"
+  region = "us-east-1"
+  assume_role {
+    role_arn     = data.terraform_remote_state.images_production.outputs.provisionthirdpartybucketreadroles_role.arn
+    session_name = local.caller_user_name
+  }
+}
+
+# ProvisionThirdPartyBucketReadRoles AWS provider
+# for the Images Staging account
+provider "aws" {
+  alias  = "images-staging-s3"
+  region = "us-east-1"
+  assume_role {
+    role_arn     = data.terraform_remote_state.images_staging.outputs.provisionthirdpartybucketreadroles_role.arn
+    session_name = local.caller_user_name
+  }
+}
