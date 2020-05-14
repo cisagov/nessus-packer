@@ -18,10 +18,10 @@ locals {
 
   # Calculate what the names of the accounts that are allowed to use
   # this AMI should look like.  In this case the only accounts that
-  # are allowed to use this AMI are the env* accounts of the same type
-  # (production, staging, etc.) as the Images account.
+  # are allowed to use this AMI are the Shared Services and env* accounts
+  # of the same type (production, staging, etc.) as the Images account.
   images_account_type = trim(split("(", local.images_account_name)[1], ")")
-  account_name_regex  = format("^env[[:digit:]]+ \\(%s\\)$", local.images_account_type)
+  account_name_regex  = "^Shared Services \\(${local.images_account_type}\\)$|^env[[:digit:]]+ \\(${local.images_account_type}\\)$"
 }
 
 # The most-recent AMI created by cisagov/nessus-packer
