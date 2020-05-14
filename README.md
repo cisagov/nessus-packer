@@ -8,10 +8,24 @@ vulnerability scanner.
 
 ## Pre-requisites ##
 
-This project requires a build user to exist in AWS.  The accompanying terraform
-code will create the user with the appropriate name and permissions.  This only
-needs to be run once per project, per AWS account.  This user will also be used by
-GitHub Actions.
+This project requires a build user to exist in AWS. The accompanying Terraform
+code will create the user with the appropriate name and permissions. This only
+needs to be run once per project, per AWS account. This user will also be used
+by GitHub Actions.
+
+Before the build user can be created, the following profile must exist in
+your AWS credentials file:
+
+* `cool-terraform-backend`
+
+The easiest way to set up that profile is to use our
+[`aws-profile-sync`](https://github.com/cisagov/aws-profile-sync) utility.
+Follow the usage instructions in that repository before continuing with the
+next steps. Note that you will need to know where your team stores their
+remote profile data in order to use
+[`aws-profile-sync`](https://github.com/cisagov/aws-profile-sync).
+
+To create the build user, follow these instructions:
 
 Before the build user can be created, the following profile must exist in
 your AWS credentials file:
@@ -65,16 +79,16 @@ how the build was triggered from GitHub.
 
 1. **Non-release test**: After a normal commit or pull request GitHub Actions
    will build the project, and run tests and validation on the
-   packer configuration.  It will __not__ build an image.
+   packer configuration. It will __not__ build an image.
 1. **Pre-release deploy**: Publish a GitHub release
-   with the "This is a pre-release" checkbox checked.  An image will be built
+   with the "This is a pre-release" checkbox checked. An image will be built
    and deployed using the [`prerelease`](.github/workflows/prerelease.yml)
    workflow.  This should be configured to deploy the image to a single region
    using a non-production account (e.g. "staging").
 1. **Production release deploy**: Publish a GitHub release with
-   the "This is a pre-release" checkbox unchecked.  An image will be built
+   the "This is a pre-release" checkbox unchecked. An image will be built
    and deployed using the [`release`](.github/workflows/release.yml)
-   workflow.  This should be configured to deploy the image to multiple regions
+   workflow. This should be configured to deploy the image to multiple regions
    using a production account.
 
 ### Using Your Local Environment ###

@@ -1,3 +1,14 @@
+locals {
+  # Extract the user name of the caller for use in assumed role session names.
+  # When using the value of `user_id` we were unable to assume roles using
+  # `caller_user_name` as their `session_name`. The error message returned by AWS
+  # did not indicate that the `session_name` was the issue, however when the
+  # semicolon was removed there were no issues. Please see the documentation at
+  # https://docs.aws.amazon.com/cli/latest/reference/sts/assume-role.html
+  # for information about acceptable characters for the session name.
+  caller_user_name = replace(data.aws_caller_identity.terraform_backend.user_id, ":", ".")
+}
+
 # Provider that is only used for obtaining the caller identity.
 # Note that we cannot use a provider that assumes a role via an ARN from a
 # Terraform remote state for this purpose (like we do for all of the other
