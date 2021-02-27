@@ -1,9 +1,9 @@
 ---
 - name: Import base image playbook
-  import_playbook: base.yml
+  ansible.builtin.import_playbook: base.yml
 
 - name: Import Nessus playbook
-  import_playbook: nessus.yml
+  ansible.builtin.import_playbook: nessus.yml
 
 - name: Import AWS playbook
-  import_playbook: aws.yml
+  ansible.builtin.import_playbook: aws.yml
