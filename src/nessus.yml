@@ -1,16 +1,10 @@
 ---
 - hosts: all
-  name: Install Nessus
+  name: Install Nessus and configure system for more ephemeral ports
   become: yes
   become_method: sudo
   roles:
+    - role: more_ephemeral_ports
     - role: nessus
       vars:
         package_bucket: "{{ build_bucket }}"
-
-- hosts: all
-  name: Configure maximum number of ephemeral ports
-  become: yes
-  become_method: sudo
-  roles:
-    - more_ephemeral_ports
