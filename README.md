@@ -16,26 +16,12 @@ by GitHub Actions.
 Before the build user can be created, the following profile must exist in
 your AWS credentials file:
 
-* `cool-terraform-backend`
+- `cool-terraform-backend`
 
 The easiest way to set up that profile is to use our
 [`aws-profile-sync`](https://github.com/cisagov/aws-profile-sync) utility.
 Follow the usage instructions in that repository before continuing with the
 next steps. Note that you will need to know where your team stores their
-remote profile data in order to use
-[`aws-profile-sync`](https://github.com/cisagov/aws-profile-sync).
-
-To create the build user, follow these instructions:
-
-Before the build user can be created, the following profile must exist in
-your AWS credentials file:
-
-* `cool-terraform-backend`
-
-The easiest way to set up that profile is to use our
-[`aws-profile-sync`](https://github.com/cisagov/aws-profile-sync) utility.
-Follow the usage instructions in that repository before continuing with the
-next steps.  Note that you will need to know where your team stores their
 remote profile data in order to use
 [`aws-profile-sync`](https://github.com/cisagov/aws-profile-sync).
 
@@ -117,17 +103,17 @@ role_session_name = example
 The [Packer template](src/packer.json) requires three environment variables
 to be defined:
 
-* `BUILD_BUCKET`: The name of the S3 bucket containing the Nessus
+- `BUILD_BUCKET`: The name of the S3 bucket containing the Nessus
   package file.
-* `BUILD_REGION`: The region in which to build the image.
-* `BUILD_REGION_KMS`: The KMS key alias to use to encrypt the image.
+- `BUILD_REGION`: The region in which to build the image.
+- `BUILD_REGION_KMS`: The KMS key alias to use to encrypt the image.
 
 Additionally, the following optional environment variables can be used
 by the [Packer template](src/packer.json) to tag the final image:
 
-* `GITHUB_IS_PRERELEASE`: Boolean pre-release status.
-* `GITHUB_RELEASE_TAG`: Image version.
-* `GITHUB_RELEASE_URL`: URL pointing to the related GitHub release.
+- `GITHUB_IS_PRERELEASE`: Boolean pre-release status.
+- `GITHUB_RELEASE_TAG`: Image version.
+- `GITHUB_RELEASE_URL`: URL pointing to the related GitHub release.
 
 Here is an example of how to kick off a pre-release build:
 
