@@ -4,7 +4,6 @@
   become: yes
   become_method: sudo
   roles:
-    - amazon_efs_utils
     - amazon_ssm_agent
     # This is for the python3-botocore task below
     - backports
