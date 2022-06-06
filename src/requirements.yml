@@ -17,7 +17,6 @@
   name: more_ephemeral_ports
 - src: https://github.com/cisagov/ansible-role-nessus
   name: nessus
-  version: improvement/update-nessus-version
 - src: https://github.com/cisagov/ansible-role-nvme
   name: nvme
 - src: https://github.com/cisagov/ansible-role-persist-journald
