@@ -18,7 +18,7 @@ module "iam_user" {
 resource "aws_iam_role_policy_attachment" "thirdpartybucketread_production" {
   provider = aws.images-production-ami
 
-  policy_arn = data.terraform_remote_state.ansible_role_nessus.outputs.production_policy.arn
+  policy_arn = data.terraform_remote_state.ansible_role_nessus.outputs.production_bucket_policy.arn
   role       = module.iam_user.ec2amicreate_role_production.name
 }
 
@@ -26,6 +26,6 @@ resource "aws_iam_role_policy_attachment" "thirdpartybucketread_production" {
 resource "aws_iam_role_policy_attachment" "thirdpartybucketread_staging" {
   provider = aws.images-staging-ami
 
-  policy_arn = data.terraform_remote_state.ansible_role_nessus.outputs.staging_policy.arn
+  policy_arn = data.terraform_remote_state.ansible_role_nessus.outputs.staging_bucket_policy.arn
   role       = module.iam_user.ec2amicreate_role_staging.name
 }
