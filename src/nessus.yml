@@ -3,8 +3,12 @@
   name: Install Nessus and configure system for more ephemeral ports
   become: yes
   become_method: sudo
-  roles:
-    - role: more_ephemeral_ports
-    - role: nessus
+  tasks:
+    - name: Configure number of ephemeral ports
+      ansible.builtin.include_role:
+        name: more_ephemeral_ports
+    - name: Install Nessus
+      ansible.builtin.include_role:
+        name: nessus
       vars:
         package_bucket: "{{ build_bucket }}"
