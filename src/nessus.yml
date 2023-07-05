@@ -11,4 +11,4 @@
       ansible.builtin.include_role:
         name: nessus
       vars:
-        package_bucket: "{{ build_bucket }}"
+        nessus_package_bucket: "{{ build_bucket }}"
