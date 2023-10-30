@@ -1,7 +1,7 @@
 ---
 - hosts: all
   name: Install Nessus and configure system for more ephemeral ports
-  become: yes
+  become: true
   become_method: ansible.builtin.sudo
   tasks:
     - name: Configure number of ephemeral ports
