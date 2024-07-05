@@ -75,7 +75,7 @@ variable "skip_create_ami" {
 
 data "amazon-ami" "debian_bookworm" {
   filters = {
-    name                = "debian-12-amd64-*"
+    name                = "debian-12-arm64-*"
     root-device-type    = "ebs"
     virtualization-type = "hvm"
   }
@@ -87,11 +87,11 @@ data "amazon-ami" "debian_bookworm" {
 locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 
 source "amazon-ebs" "nessus" {
-  ami_name                    = "nessus-hvm-${local.timestamp}-x86_64-ebs"
+  ami_name                    = "nessus-hvm-${local.timestamp}-arm64-ebs"
   ami_regions                 = var.ami_regions
   associate_public_ip_address = true
   encrypt_boot                = true
-  instance_type               = "t3.large"
+  instance_type               = "t4g.large"
   kms_key_id                  = var.build_region_kms
   launch_block_device_mappings {
     delete_on_termination = true
