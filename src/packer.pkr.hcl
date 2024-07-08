@@ -73,14 +73,14 @@ variable "skip_create_ami" {
   type        = bool
 }
 
-data "amazon-ami" "debian_bookworm" {
+data "amazon-ami" "ubuntu_noble" {
   filters = {
-    name                = "debian-12-arm64-*"
+    name                = "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-arm64-server*"
     root-device-type    = "ebs"
     virtualization-type = "hvm"
   }
   most_recent = true
-  owners      = ["136693071363"]
+  owners      = ["099720109477"]
   region      = var.build_region
 }
 
@@ -103,8 +103,8 @@ source "amazon-ebs" "nessus" {
   region             = var.build_region
   region_kms_key_ids = var.region_kms_keys
   skip_create_ami    = var.skip_create_ami
-  source_ami         = data.amazon-ami.debian_bookworm.id
-  ssh_username       = "admin"
+  source_ami         = data.amazon-ami.ubuntu_noble.id
+  ssh_username       = "ubuntu"
   subnet_filter {
     filters = {
       "tag:Name" = "AMI Build"
@@ -112,9 +112,9 @@ source "amazon-ebs" "nessus" {
   }
   tags = {
     Application        = "Nessus"
-    Base_AMI_Name      = data.amazon-ami.debian_bookworm.name
+    Base_AMI_Name      = data.amazon-ami.ubuntu_noble.name
     GitHub_Release_URL = var.release_url
-    OS_Version         = "Debian Bookworm"
+    OS_Version         = "Ubuntu Noble Numbat"
     Pre_Release        = var.is_prerelease
     Release            = var.release_tag
     Team               = "VM Fusion - Development"
