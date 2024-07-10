@@ -1,6 +1,7 @@
 ---
 - name: amazon_ssm_agent
   src: https://github.com/cisagov/ansible-role-amazon-ssm-agent
+  version: bugfix/install-via-snap-on-ubuntu
 - name: automated_security_updates
   src: https://github.com/cisagov/ansible-role-automated-security-updates
 - name: banner
