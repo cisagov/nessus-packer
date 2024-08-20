@@ -12,3 +12,4 @@
         name: nessus
       vars:
         nessus_package_bucket: "{{ build_bucket }}"
+        nessus_version: "10.7.4"
