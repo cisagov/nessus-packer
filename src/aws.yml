@@ -4,9 +4,10 @@
   become: true
   become_method: ansible.builtin.sudo
   tasks:
-    - name: Install Amazon SSM Agent
-      ansible.builtin.include_role:
-        name: amazon_ssm_agent
+    # This agent is already installed on the Ubuntu base AMI.
+    # - name: Install Amazon SSM Agent
+    #   ansible.builtin.include_role:
+    #     name: amazon_ssm_agent
     - name: Install chrony and configure it for use within AWS
       ansible.builtin.include_role:
         name: chrony_aws
