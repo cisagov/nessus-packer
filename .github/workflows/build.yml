@@ -242,8 +242,7 @@ jobs:
       fail-fast: false
       matrix:
         architecture:
-          # Nessus does not support ARM64 on Debian.
-          # - arm64
+          - arm64
           - x86_64
     steps:
       - id: harden-runner
