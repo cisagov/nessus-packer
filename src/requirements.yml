@@ -1,6 +1,7 @@
 ---
-- name: amazon_ssm_agent
-  src: https://github.com/cisagov/ansible-role-amazon-ssm-agent
+# This agent is already installed on the Ubuntu base AMI.
+# - name: amazon_ssm_agent
+#   src: https://github.com/cisagov/ansible-role-amazon-ssm-agent
 - name: automated_security_updates
   src: https://github.com/cisagov/ansible-role-automated-security-updates
 - name: banner
