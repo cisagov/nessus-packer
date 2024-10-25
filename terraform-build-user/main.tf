@@ -9,8 +9,15 @@ module "iam_user" {
     aws.images-staging-ssm    = aws.images-staging-ssm
   }
 
-  ssm_parameters = ["/cyhy/dev/users", "/ssh/public_keys/*"]
-  user_name      = "build-nessus-packer"
+  ssm_parameters = [
+    "/cyhy/dev/users",
+    "/ssh/public_keys/*",
+    "/vnc/password",
+    "/vnc/ssh/ed25519_private_key",
+    "/vnc/ssh/ed25519_public_key",
+    "/vnc/username",
+  ]
+  user_name = "build-nessus-packer"
 }
 
 # Attach Production ThirdPartyBucketRead policy to
