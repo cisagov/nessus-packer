@@ -1,4 +1,8 @@
 ---
+# We are installing cisagov/ansible-role-vnc-server so that we get the
+# vnc user.  This is being done to allow Kali instances to ssh to
+# Nessus instances using that user and its associated ssh keys.  There
+# is no intention to actually use the VNC server on this instance.
 - name: Install VNC
   hosts: all
   become: true
