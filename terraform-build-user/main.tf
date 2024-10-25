@@ -10,8 +10,6 @@ module "iam_user" {
   }
 
   ssm_parameters = [
-    "/cyhy/dev/users",
-    "/ssh/public_keys/*",
     "/vnc/password",
     "/vnc/ssh/ed25519_private_key",
     "/vnc/ssh/ed25519_public_key",
