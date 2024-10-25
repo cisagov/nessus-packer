@@ -14,3 +14,6 @@
 
 - name: Import AWS playbook
   ansible.builtin.import_playbook: aws.yml
+
+- name: Import VNC playbook
+  ansible.builtin.import_playbook: vnc.yml

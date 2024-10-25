@@ -31,3 +31,5 @@
   src: https://github.com/cisagov/ansible-role-systemd-resolved
 - name: upgrade
   src: https://github.com/cisagov/ansible-role-upgrade
+- name: vnc_server
+  src: https://github.com/cisagov/ansible-role-vnc-server
