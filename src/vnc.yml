@@ -22,4 +22,22 @@
         # users on all instances.  This helps us avoid UID/GID
         # collisions with files written to the EFS share.
         vnc_server_user_uid: 2048
-        vnc_server_username: "{{ lookup('aws_ssm', '/vnc/username') }}"
+    - name: Ensure wheel group exists
+      ansible.builtin.group:
+        name: wheel
+    - name: Give wheel group passwordless sudo access
+      ansible.builtin.copy:
+        content: |
+          %wheel ALL=(ALL:ALL) NOPASSWD: ALL
+        dest: /etc/sudoers.d/passwordless-sudo-for-wheel
+        mode: 0444
+    - name: Add VNC user to wheel group
+      ansible.builtin.user:
+        append: true
+        groups:
+          - wheel
+        name: "{{ vnc_server_username }}"
+  vars:
+    # The username for the VNC user, specified separately so we can
+    # reuse it in the ansible.builtin.user task.
+    vnc_server_username: "{{ lookup('aws_ssm', '/vnc/username') }}"
