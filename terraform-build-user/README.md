@@ -21,6 +21,7 @@ description of how this code is intended to be used.
 | Name | Version |
 |------|---------|
 | aws.cool-terraform-backend | ~> 4.9 |
+| aws.images-ami | ~> 4.9 |
 | terraform | n/a |
 
 ## Modules ##
@@ -33,7 +34,9 @@ description of how this code is intended to be used.
 
 | Name | Type |
 |------|------|
+| [aws_iam_role_policy_attachment.thirdpartybucketread](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_caller_identity.terraform_backend](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
+| [terraform_remote_state.ansible_role_nessus](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 | [terraform_remote_state.images](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 | [terraform_remote_state.images_parameterstore](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 | [terraform_remote_state.users](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
