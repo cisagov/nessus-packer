@@ -5,8 +5,6 @@
   src: https://github.com/cisagov/ansible-role-automated-security-updates
 - name: banner
   src: https://github.com/cisagov/ansible-role-banner
-- name: chrony_aws
-  src: https://github.com/cisagov/ansible-role-chrony-aws
 - name: clamav
   src: https://github.com/cisagov/ansible-role-clamav
 - name: cloudwatch_agent
@@ -29,6 +27,8 @@
   src: https://github.com/cisagov/ansible-role-remove-python2
 - name: systemd_resolved
   src: https://github.com/cisagov/ansible-role-systemd-resolved
+- name: systemd_timesyncd_aws
+  src: https://github.com/cisagov/ansible-role-systemd-timesyncd-aws
 - name: upgrade
   src: https://github.com/cisagov/ansible-role-upgrade
 - name: vnc_server
