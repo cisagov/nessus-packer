@@ -1,6 +1,8 @@
 # nessus-packer ⚠️📦 #
 
 [![GitHub Build Status](https://github.com/cisagov/nessus-packer/workflows/build/badge.svg)](https://github.com/cisagov/nessus-packer/actions)
+[![License](https://img.shields.io/github/license/cisagov/nessus-packer)](https://spdx.org/licenses/)
+[![CodeQL](https://github.com/cisagov/nessus-packer/workflows/CodeQL/badge.svg)](https://github.com/cisagov/nessus-packer/actions/workflows/codeql-analysis.yml)
 
 This project can be used to create machine images that include
 [Tenable's Nessus Professional](https://www.tenable.com/products/nessus/nessus-professional)
