@@ -13,11 +13,12 @@
         name: vnc_server
       vars:
         # The user information and ssh keys for the VNC user
-        vnc_server_password: "{{ lookup('aws_ssm', '/vnc/password') }}"
+        vnc_server_password: >-
+          {{ lookup('amazon.aws.ssm_parameter', '/vnc/password') }}
         vnc_server_private_ssh_key: |-
-          {{ lookup('aws_ssm', '/vnc/ssh/ed25519_private_key') }}
+          {{ lookup('amazon.aws.ssm_parameter', '/vnc/ssh/ed25519_private_key') }}
         vnc_server_public_ssh_key: |-
-          {{ lookup('aws_ssm', '/vnc/ssh/ed25519_public_key') }}
+          {{ lookup('amazon.aws.ssm_parameter', '/vnc/ssh/ed25519_public_key') }}
         # Note that we use the same UID for the VNC and Samba guest
         # users on all instances.  This helps us avoid UID/GID
         # collisions with files written to the EFS share.
@@ -40,4 +41,5 @@
   vars:
     # The username for the VNC user, specified separately so we can
     # reuse it in the ansible.builtin.user task.
-    vnc_server_username: "{{ lookup('aws_ssm', '/vnc/username') }}"
+    vnc_server_username: >-
+      {{ lookup('amazon.aws.ssm_parameter', '/vnc/username') }}
