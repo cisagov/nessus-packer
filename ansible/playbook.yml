@@ -17,3 +17,6 @@
 
 - name: Import VNC playbook
   ansible.builtin.import_playbook: vnc.yml
+
+- name: Import Wazuh agent playbook
+  ansible.builtin.import_playbook: wazuh_agent.yml
