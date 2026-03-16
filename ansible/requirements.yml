@@ -1,35 +1,60 @@
 ---
-- name: amazon_ssm_agent
-  src: https://github.com/cisagov/ansible-role-amazon-ssm-agent
-- name: automated_security_updates
-  src: https://github.com/cisagov/ansible-role-automated-security-updates
-- name: banner
-  src: https://github.com/cisagov/ansible-role-banner
-- name: clamav
-  src: https://github.com/cisagov/ansible-role-clamav
-- name: cloudwatch_agent
-  src: https://github.com/cisagov/ansible-role-cloudwatch-agent
-- name: htop
-  src: https://github.com/cisagov/ansible-role-htop
-- name: more_ephemeral_ports
-  src: https://github.com/cisagov/ansible-role-more-ephemeral-ports
-- name: nessus
-  src: https://github.com/cisagov/ansible-role-nessus
-- name: nvme
-  src: https://github.com/cisagov/ansible-role-nvme
-- name: persist_journald
-  src: https://github.com/cisagov/ansible-role-persist-journald
-- name: pip
-  src: https://github.com/cisagov/ansible-role-pip
-- name: python
-  src: https://github.com/cisagov/ansible-role-python
-- name: remove_python2
-  src: https://github.com/cisagov/ansible-role-remove-python2
-- name: systemd_resolved
-  src: https://github.com/cisagov/ansible-role-systemd-resolved
-- name: systemd_timesyncd_aws
-  src: https://github.com/cisagov/ansible-role-systemd-timesyncd-aws
-- name: upgrade
-  src: https://github.com/cisagov/ansible-role-upgrade
-- name: vnc_server
-  src: https://github.com/cisagov/ansible-role-vnc-server
+# Both the collections and roles lists must exist in this file because
+# we use both ansible-galaxy collection install and ansible-galaxy
+# role install to install collections and roles from it.  Note that
+# either (or both) can be an empty list, e.g., collections: [].
+collections:
+  # Required by the following Ansible roles:
+  # - ansible-role-amazon-ssm-agent (uses amazon.aws.s3_object)
+  #
+  # Also required by the following playbooks:
+  # - ansible/vnc.yml (uses amazon.aws.ssm_parameter)
+  # - ansible/wazuh_agent.yml (uses amazon.aws.ssm_parameter)
+  - amazon.aws
+  # Required by the following Ansible roles:
+  # - ansible-role-amazon-ssm-agent (uses community.general.snap)
+  # - ansible-role-automated-security-updates (uses community.general.ini_file)
+  # - ansible-role-cloudwatch-agent (uses community.general.ini_file)
+  # - ansible-role-persist-journald (uses community.general.ini_file)
+  # - ansible-role-systemd-resolved (uses community.general.ini_file)
+  #
+  # Also required by the following playbooks:
+  # - ansible/nessus.yml (uses community.general.snap)
+  - community.general
+roles:
+  - name: amazon_ssm_agent
+    src: https://github.com/cisagov/ansible-role-amazon-ssm-agent
+  - name: automated_security_updates
+    src: https://github.com/cisagov/ansible-role-automated-security-updates
+  - name: banner
+    src: https://github.com/cisagov/ansible-role-banner
+  - name: clamav
+    src: https://github.com/cisagov/ansible-role-clamav
+  - name: cloudwatch_agent
+    src: https://github.com/cisagov/ansible-role-cloudwatch-agent
+  - name: htop
+    src: https://github.com/cisagov/ansible-role-htop
+  - name: more_ephemeral_ports
+    src: https://github.com/cisagov/ansible-role-more-ephemeral-ports
+  - name: nessus
+    src: https://github.com/cisagov/ansible-role-nessus
+  - name: nvme
+    src: https://github.com/cisagov/ansible-role-nvme
+  - name: persist_journald
+    src: https://github.com/cisagov/ansible-role-persist-journald
+  - name: pip
+    src: https://github.com/cisagov/ansible-role-pip
+  - name: python
+    src: https://github.com/cisagov/ansible-role-python
+  - name: remove_python2
+    src: https://github.com/cisagov/ansible-role-remove-python2
+  - name: systemd_resolved
+    src: https://github.com/cisagov/ansible-role-systemd-resolved
+  - name: systemd_timesyncd_aws
+    src: https://github.com/cisagov/ansible-role-systemd-timesyncd-aws
+  - name: upgrade
+    src: https://github.com/cisagov/ansible-role-upgrade
+  - name: vnc_server
+    src: https://github.com/cisagov/ansible-role-vnc-server
+  - name: wazuh_agent
+    src: https://github.com/cisagov/ansible-role-wazuh-agent
