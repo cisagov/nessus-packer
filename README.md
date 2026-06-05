@@ -171,6 +171,13 @@ ansible-galaxy collection install --force --force-with-deps --requirements-file 
 AWS_PROFILE=cool-images-ec2amicreate-nessus-packer packer build --timestamp-ui -var release_tag=$(./bump-version show) -var build_bucket=installers-bucket -var is_prerelease=true .
 ```
 
+> [!NOTE]
+> Note that we use `--force-with-deps` here since the user's Ansible
+> setup, unlike when we run in GitHub Actions, may not start from a
+> pristine state. We want to make sure that the latest versions of
+> all Ansible roles and collections, along with their dependencies, are
+> installed by forcing their reinstallation even if they are already present.
+
 If you are satisfied with your pre-release image, you can easily create a release
 that deploys to all regions by adding additional regions to the Packer template.
 This can be done by using a `.pkrvars.hcl` for example with `release.pkrvars.hcl`:
