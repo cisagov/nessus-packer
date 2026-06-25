@@ -17,9 +17,6 @@ collections:
   # - ansible-role-cloudwatch-agent (uses community.general.ini_file)
   # - ansible-role-persist-journald (uses community.general.ini_file)
   # - ansible-role-systemd-resolved (uses community.general.ini_file)
-  #
-  # Also required by the following playbooks:
-  # - ansible/nessus.yml (uses community.general.snap)
   - community.general
 roles:
   - name: amazon_ssm_agent

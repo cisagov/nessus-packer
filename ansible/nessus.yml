@@ -9,14 +9,10 @@
         name: more_ephemeral_ports
     # The AWS CLI is required for the cloud-init job that configures
     # and initializes Nessus.
-    #
-    # There is no system package for AWS CLI for Ubuntu Noble Numbat,
-    # but we can install it via snap.
     - name: Install AWS CLI
-      community.general.snap:
-        classic: true
+      ansible.builtin.package:
         name:
-          - aws-cli
+          - awscli
     - name: Install Nessus
       ansible.builtin.include_role:
         name: nessus
