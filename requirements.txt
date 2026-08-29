@@ -18,5 +18,5 @@ ansible-core>=2.17.7
 # https://docs.ansible.com/projects/ansible/latest/collections/amazon/aws/ssm_parameter_lookup.html#ansible-collections-amazon-aws-ssm-parameter-lookup
 boto3
 # The bump-version script requires at least version 3 of semver.
-semver>=3
+semver>=3.0.4
 setuptools>=70.1
